@@ -1,6 +1,6 @@
 export const configuration = () => ({
   app: {
-    port: parseInt(process.env.PORT || "3000", 10),
+    port: parseInt(process.env.PORT || "3001", 10),
     globalPrefix: process.env.GLOBAL_PREFIX || "api",
     managerPhone: process.env.MANAGER_PHONE || ""
   },

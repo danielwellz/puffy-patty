@@ -1,4 +1,5 @@
-const API_BASE = process.env.REACT_APP_API_URL || "/api";
+// Default to backend dev port 3001; override via REACT_APP_API_URL for other environments.
+const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:3001/api";
 
 export async function apiFetch<T>(path: string, options: RequestInit = {}, token?: string): Promise<T> {
   const headers = new Headers(options.headers || {});

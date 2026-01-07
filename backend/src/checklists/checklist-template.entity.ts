@@ -11,7 +11,7 @@ export class ChecklistTemplate {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
-  @Column({ type: "enum", enum: ChecklistType })
+  @Column({ type: "enum", enum: ChecklistType, unique: true })
   type!: ChecklistType;
 
   @Column({ type: "jsonb" })

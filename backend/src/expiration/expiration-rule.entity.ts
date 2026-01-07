@@ -5,7 +5,7 @@ export class ExpirationRule {
   @PrimaryGeneratedColumn("uuid")
   id!: string;
 
-  @Column()
+  @Column({ unique: true })
   item!: string;
 
   @Column()

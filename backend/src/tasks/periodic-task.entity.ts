@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: "periodic_tasks" })
+@Index(["taskName", "branchId"], { unique: true })
 export class PeriodicTask {
   @PrimaryGeneratedColumn("uuid")
   id!: string;

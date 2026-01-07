@@ -12,7 +12,7 @@ cp .env.example .env
 npm install
 docker compose up -d db   # optional helper DB
 npm run seed              # seeds Persian data + sample users
-npm run start:dev         # serves on http://localhost:3000/api
+npm run start:dev         # serves on http://localhost:3001/api (configurable via PORT)
 ```
 
 Default sample accounts (password `password123`):

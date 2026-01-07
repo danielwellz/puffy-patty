@@ -13,11 +13,11 @@ cd backend
 cp .env.example .env            # set DB + JWT values
 npm install
 npm run seed                    # inserts recipes, checklists, prep/shopping templates, expiration rules, shifts, users
-npm run start:dev               # http://localhost:3000/api
+npm run start:dev               # http://localhost:3001/api (set PORT to override)
 ```
 
 Sample users (password `password123`):
-- Manager: `09120001000`
+- Manager: `09137334702`
 - Head chef: `09120000001`
 - Staff: `09120000002`, `09120000003`, `09120000004`, `09120000005`
 
@@ -25,7 +25,7 @@ Sample users (password `password123`):
 ```bash
 cd frontend
 npm install
-# set REACT_APP_API_URL if the API isn’t on http://localhost:3000/api
+# set REACT_APP_API_URL=http://localhost:3001/api if different
 npm start                       # http://localhost:3000
 ```
 
