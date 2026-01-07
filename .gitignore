@@ -1,0 +1,48 @@
+
+  # Node / build artifacts
+  node_modules/
+  npm-debug.log*
+  yarn-debug.log*
+  yarn-error.log*
+  pnpm-debug.log*
+  /dist
+  /build
+  /.nyc_output
+  /coverage
+  /tmp
+  /temp
+  *.pid
+  *.pid.lock
+  pids
+  *.seed
+  *.log
+
+  # Frontend artifacts
+  frontend/node_modules/
+  frontend/build/
+  frontend/.env*
+
+  # Backend artifacts
+  backend/node_modules/
+  backend/dist/
+  backend/.env*
+  backend/uploads/
+
+  # OS / editors
+  .DS_Store
+  Thumbs.db
+  .idea/
+  .vscode/*
+  !.vscode/settings.json
+  !.vscode/tasks.json
+  !.vscode/launch.json
+  !.vscode/extensions.json
+  *.sublime-workspace
+  .project
+  .classpath
+  .settings/
+  .c9/
+  *.launch
+
+  # Reports
+  report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json

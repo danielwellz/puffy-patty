@@ -1,0 +1,29 @@
+{
+  "short_name": "PuffyPatty",
+  "name": "Puffy Patty PWA",
+  "description": "Detroit pizzas, loud burgers, and hotdogs with attitude — installable and offline-ready.",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#d20302",
+  "background_color": "#fffaf0"
+}
