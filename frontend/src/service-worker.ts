@@ -12,7 +12,8 @@ import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
-import { StaleWhileRevalidate } from 'workbox-strategies';
+import { CacheableResponsePlugin } from 'workbox-cacheable-response';
+import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies';
 
 declare const self: ServiceWorkerGlobalScope;
 
@@ -66,6 +67,29 @@ registerRoute(
       // least-recently used images are removed.
       new ExpirationPlugin({ maxEntries: 50 }),
     ],
+  })
+);
+
+registerRoute(
+  ({ url }) => url.origin === self.location.origin && url.pathname.startsWith('/api/public/menu'),
+  new NetworkFirst({
+    cacheName: 'public-menu',
+    networkTimeoutSeconds: 4,
+    plugins: [
+      new CacheableResponsePlugin({ statuses: [0, 200] }),
+      new ExpirationPlugin({ maxEntries: 20, maxAgeSeconds: 24 * 60 * 60 })
+    ]
+  })
+);
+
+registerRoute(
+  ({ url }) => url.origin === self.location.origin && url.pathname.startsWith('/api/public/branches'),
+  new StaleWhileRevalidate({
+    cacheName: 'public-branches',
+    plugins: [
+      new CacheableResponsePlugin({ statuses: [0, 200] }),
+      new ExpirationPlugin({ maxEntries: 10, maxAgeSeconds: 24 * 60 * 60 })
+    ]
   })
 );
 

@@ -18,6 +18,14 @@ import ExpirationTrackerPage from "./pages/ExpirationTracker";
 import RecipesPage from "./pages/Recipes";
 import LoginPage from "./pages/Login";
 import NotAuthorizedPage from "./pages/NotAuthorized";
+import AdminReservationsPage from "./pages/AdminReservations";
+import PwaLayout from "./pwa/PwaLayout";
+import { PwaProvider } from "./pwa/PwaContext";
+import OrderPage from "./pwa/pages/OrderPage";
+import CartPage from "./pwa/pages/CartPage";
+import CheckoutPage from "./pwa/pages/CheckoutPage";
+import TrackOrderPage from "./pwa/pages/TrackOrderPage";
+import ReservationPage from "./pwa/pages/ReservationPage";
 
 const navLinksForRole = (role: string | null, t: (key: string) => string): SidebarLink[] => {
   if (!role) return [];
@@ -34,7 +42,8 @@ const navLinksForRole = (role: string | null, t: (key: string) => string): Sideb
       { to: "/waste-log", label: t("nav.waste") },
       { to: "/periodic-tasks", label: t("nav.tasks") },
       { to: "/expiration-tracker", label: t("nav.expiration") },
-      { to: "/recipes", label: t("nav.recipes") }
+      { to: "/recipes", label: t("nav.recipes") },
+      { to: "/admin/reservations", label: t("nav.reservations") }
     ];
   }
   if (role === "HEAD_CHEF") {
@@ -49,7 +58,8 @@ const navLinksForRole = (role: string | null, t: (key: string) => string): Sideb
       { to: "/waste-log", label: t("nav.waste") },
       { to: "/periodic-tasks", label: t("nav.tasks") },
       { to: "/expiration-tracker", label: t("nav.expiration") },
-      { to: "/recipes", label: t("nav.recipes") }
+      { to: "/recipes", label: t("nav.recipes") },
+      { to: "/admin/reservations", label: t("nav.reservations") }
     ];
   }
   return [
@@ -64,23 +74,16 @@ const navLinksForRole = (role: string | null, t: (key: string) => string): Sideb
   ];
 };
 
-function AppShell() {
-  const { i18n, t } = useTranslation();
+function StaffShell() {
+  const { t } = useTranslation();
   const { token, role, branchId, logout } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [date, setDate] = useState(() => new Date().toISOString().slice(0, 10));
 
-  useEffect(() => {
-    document.documentElement.lang = i18n.language;
-    document.documentElement.dir = i18n.dir();
-    document.body.classList.toggle("rtl", i18n.dir() === "rtl");
-  }, [i18n]);
-
   const links = useMemo(() => navLinksForRole(role, t), [role, t]);
 
   return (
-    <div className={`app ${i18n.dir() === "rtl" ? "rtl" : ""}`}>
-      <div className="grain" aria-hidden />
+    <>
       <Navbar onToggleSidebar={() => setSidebarOpen((v) => !v)} branchId={branchId} role={role as any} onLogout={logout} />
       <div className="layout">
         {token && <Sidebar links={links} open={sidebarOpen} onClose={() => setSidebarOpen(false)} />}
@@ -192,10 +195,51 @@ function AppShell() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="/admin/reservations"
+              element={
+                <ProtectedRoute allowedRoles={["MANAGER", "HEAD_CHEF"]}>
+                  <AdminReservationsPage />
+                </ProtectedRoute>
+              }
+            />
             <Route path="*" element={<Navigate to={token ? "/dashboard" : "/login"} replace />} />
           </Routes>
         </main>
       </div>
+    </>
+  );
+}
+
+function AppShell() {
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    document.documentElement.lang = i18n.language;
+    document.documentElement.dir = i18n.dir();
+    document.body.classList.toggle("rtl", i18n.dir() === "rtl");
+  }, [i18n]);
+
+  return (
+    <div className={`app ${i18n.dir() === "rtl" ? "rtl" : ""}`}>
+      <div className="grain" aria-hidden />
+      <Routes>
+        <Route
+          element={
+            <PwaProvider>
+              <PwaLayout />
+            </PwaProvider>
+          }
+        >
+          <Route path="/order" element={<OrderPage />} />
+          <Route path="/order/cart" element={<CartPage />} />
+          <Route path="/order/checkout" element={<CheckoutPage />} />
+          <Route path="/order/track/:code" element={<TrackOrderPage />} />
+          <Route path="/order/*" element={<Navigate to="/order" replace />} />
+          <Route path="/reserve" element={<ReservationPage />} />
+        </Route>
+        <Route path="*" element={<StaffShell />} />
+      </Routes>
     </div>
   );
 }

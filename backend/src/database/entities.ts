@@ -10,6 +10,12 @@ import { PrepItem } from "../planning/prep-item.entity";
 import { PlanningShoppingTemplate } from "../planning/shopping-template.entity";
 import { ShoppingItem } from "../planning/shopping-item.entity";
 import { Recipe } from "../recipes/recipe.entity";
+import { MenuCategory } from "../menu/menu-category.entity";
+import { MenuItem } from "../menu/menu-item.entity";
+import { Order } from "../orders/order.entity";
+import { OrderItem } from "../orders/order-item.entity";
+import { Payment } from "../payments/payment.entity";
+import { Reservation } from "../reservations/reservation.entity";
 import { Shift } from "../shifts/shift.entity";
 import { PeriodicTask } from "../tasks/periodic-task.entity";
 import { User } from "../users/user.entity";
@@ -26,6 +32,12 @@ export const entities = [
   PlanningShoppingTemplate,
   PrepItem,
   Recipe,
+  MenuCategory,
+  MenuItem,
+  Order,
+  OrderItem,
+  Payment,
+  Reservation,
   ShoppingItem,
   Shift,
   PeriodicTask,

@@ -20,6 +20,10 @@ import { DailyModule } from "./daily/daily.module";
 import { RecipesModule } from "./recipes/recipes.module";
 import { ChecklistsModule } from "./checklists/checklists.module";
 import { ExpirationModule } from "./expiration/expiration.module";
+import { MenuModule } from "./menu/menu.module";
+import { OrdersModule } from "./orders/orders.module";
+import { PaymentsModule } from "./payments/payments.module";
+import { ReservationsModule } from "./reservations/reservations.module";
 import { entities } from "./database/entities";
 
 @Module({
@@ -74,7 +78,11 @@ import { entities } from "./database/entities";
     BranchModule,
     RecipesModule,
     ChecklistsModule,
-    ExpirationModule
+    ExpirationModule,
+    MenuModule,
+    OrdersModule,
+    PaymentsModule,
+    ReservationsModule
   ],
   controllers: [AppController],
   providers: [

@@ -1,7 +1,8 @@
 {
-  "short_name": "PuffyPatty",
-  "name": "Puffy Patty PWA",
-  "description": "Detroit pizzas, loud burgers, and hotdogs with attitude — installable and offline-ready.",
+  "short_name": "پافی پتی",
+  "name": "پافی پتی | Puffy Patty",
+  "description": "سفارش و رزرو آنلاین پافی پتی",
+  "lang": "fa",
   "icons": [
     {
       "src": "favicon.svg",
@@ -20,7 +21,7 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/",
+  "start_url": "/order",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",

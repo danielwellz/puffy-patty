@@ -52,3 +52,78 @@ export type Shift = {
 };
 
 export type UserSummary = { id: string; name?: string; phone: string };
+
+export type Branch = {
+  id: string;
+  name: string;
+  address?: string | null;
+  phone?: string | null;
+  hoursJson?: Record<string, any> | null;
+  onlineOrderingEnabled?: boolean;
+  reservationsEnabled?: boolean;
+  dineInEnabled?: boolean;
+  takeawayEnabled?: boolean;
+};
+
+export type MenuCategory = {
+  id: string;
+  branchId?: string | null;
+  sortOrder: number;
+  isActive: boolean;
+  nameFa: string;
+  nameEn: string;
+  items: MenuItem[];
+};
+
+export type MenuItem = {
+  id: string;
+  categoryId: string;
+  basePrice: number;
+  isActive: boolean;
+  nameFa: string;
+  nameEn: string;
+  descFa?: string | null;
+  descEn?: string | null;
+  imageUrl?: string | null;
+};
+
+export type OrderType = "DINE_IN" | "TAKEAWAY";
+export type OrderStatus = "PENDING_PAYMENT" | "RECEIVED" | "PREPARING" | "READY" | "COMPLETED" | "CANCELLED";
+
+export type OrderItem = {
+  id: string;
+  menuItemId: string;
+  qty: number;
+  unitPrice: number;
+  notes?: string | null;
+  addonsJson?: Record<string, any> | null;
+};
+
+export type Order = {
+  id: string;
+  code: string;
+  branchId: string;
+  status: OrderStatus;
+  orderType: OrderType;
+  tableNumber?: string | null;
+  pickupTime?: string | null;
+  customerName?: string | null;
+  customerPhone?: string | null;
+  subtotal: number;
+  tax: number;
+  total: number;
+  items: OrderItem[];
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type Reservation = {
+  id: string;
+  branchId: string;
+  startAt: string;
+  partySize: number;
+  customerName: string;
+  customerPhone: string;
+  status: "PENDING" | "CONFIRMED" | "DECLINED" | "CANCELLED";
+  createdAt: string;
+};

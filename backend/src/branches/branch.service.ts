@@ -14,6 +14,10 @@ export class BranchService {
     return this.repo.find();
   }
 
+  findById(id: string) {
+    return this.repo.findOne({ where: { id } });
+  }
+
   async ensureDefault(id: string, name = "Main") {
     if (!id) return null;
     const existing = await this.repo.findOne({ where: { id } });

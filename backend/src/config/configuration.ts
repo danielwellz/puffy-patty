@@ -31,5 +31,24 @@ export const configuration = () => ({
   throttling: {
     ttl: parseInt(process.env.THROTTLE_TTL || "60", 10),
     limit: parseInt(process.env.THROTTLE_LIMIT || "5", 10)
+  },
+  ordering: {
+    taxRate: process.env.ORDER_TAX_RATE || "0"
+  },
+  reservations: {
+    maxPerSlot: process.env.RESERVATIONS_MAX_PER_SLOT || "5",
+    slotMinutes: process.env.RESERVATIONS_SLOT_MINUTES || "60"
+  },
+  payments: {
+    provider: process.env.PAYMENT_PROVIDER || "mock",
+    callbackBaseUrl:
+      process.env.PAYMENTS_CALLBACK_BASE_URL || "http://localhost:3001/api/public/payments/callback",
+    frontendRedirectBase: process.env.FRONTEND_ORIGIN || "http://localhost:3000",
+    mellat: {
+      terminalId: process.env.MELLAT_TERMINAL_ID || "",
+      username: process.env.MELLAT_USERNAME || "",
+      password: process.env.MELLAT_PASSWORD || "",
+      callbackUrl: process.env.MELLAT_CALLBACK_URL || ""
+    }
   }
 });
