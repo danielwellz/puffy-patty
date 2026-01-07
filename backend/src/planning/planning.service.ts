@@ -3,18 +3,8 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { ShoppingItem } from "./shopping-item.entity";
 import { PrepItem } from "./prep-item.entity";
-
-const prepTemplate = [
-  "Pizza dough",
-  "Caramelized onions",
-  "Sliced mushrooms",
-  "Sauce base",
-  "Burger patties prepped",
-  "Buns",
-  "Pickles",
-  "Fries prep",
-  "Fresh herbs"
-];
+import { PlanningPrepTemplate } from "./prep-template.entity";
+import { PlanningShoppingTemplate } from "./shopping-template.entity";
 
 @Injectable()
 export class PlanningService {
@@ -22,7 +12,11 @@ export class PlanningService {
     @InjectRepository(ShoppingItem)
     private readonly shoppingRepo: Repository<ShoppingItem>,
     @InjectRepository(PrepItem)
-    private readonly prepRepo: Repository<PrepItem>
+    private readonly prepRepo: Repository<PrepItem>,
+    @InjectRepository(PlanningPrepTemplate)
+    private readonly prepTemplateRepo: Repository<PlanningPrepTemplate>,
+    @InjectRepository(PlanningShoppingTemplate)
+    private readonly shoppingTemplateRepo: Repository<PlanningShoppingTemplate>
   ) {}
 
   private normalizeDate(date?: string) {
@@ -57,6 +51,10 @@ export class PlanningService {
     return this.shoppingRepo.delete(id);
   }
 
+  getShoppingTemplate() {
+    return this.shoppingTemplateRepo.find({ order: { category: "ASC", itemName: "ASC" } });
+  }
+
   getPrep(date?: string, branchId?: string) {
     const targetDate = this.normalizeDate(date);
     return this.prepRepo.find({ where: { date: targetDate, ...(branchId ? { branchId } : {}) }, order: { createdAt: "ASC" } });
@@ -76,8 +74,10 @@ export class PlanningService {
   async generatePrepTemplate(date?: string, branchId?: string) {
     const targetDate = this.normalizeDate(date);
     await this.prepRepo.delete({ date: targetDate, ...(branchId ? { branchId } : {}) });
+    const templateItems = await this.prepTemplateRepo.find();
+    const source = templateItems.length > 0 ? templateItems.map((t) => t.itemName) : [];
     const entities = this.prepRepo.create(
-      prepTemplate.map((itemName) => ({
+      source.map((itemName) => ({
         itemName,
         date: targetDate,
         done: false,
@@ -93,5 +93,27 @@ export class PlanningService {
 
   removePrep(id: string) {
     return this.prepRepo.delete(id);
+  }
+
+  getPrepTemplate() {
+    return this.prepTemplateRepo.find({ order: { itemName: "ASC" } });
+  }
+
+  async generateShoppingTemplate(date?: string, branchId?: string) {
+    const targetDate = this.normalizeDate(date);
+    await this.shoppingRepo.delete({ date: targetDate, ...(branchId ? { branchId } : {}) });
+    const templates = await this.shoppingTemplateRepo.find();
+    if (templates.length === 0) return [];
+    const entities = this.shoppingRepo.create(
+      templates.map((t) => ({
+        date: targetDate,
+        itemName: t.itemName,
+        unit: "",
+        quantity: "",
+        acquired: false,
+        branchId
+      }))
+    );
+    return this.shoppingRepo.save(entities);
   }
 }

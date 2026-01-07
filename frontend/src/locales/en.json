@@ -1,0 +1,126 @@
+{
+  "app": {
+    "title": "Puffy Patty",
+    "date": "Date"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "schedule": "Shift Schedule",
+    "checklistOpen": "Open Checklist",
+    "checklistHandover": "Handover Checklist",
+    "checklistClose": "Close Checklist",
+    "prep": "Prep List",
+    "shopping": "Shopping List",
+    "waste": "Waste Log",
+    "purchases": "Purchase Log",
+    "tasks": "Periodic Tasks",
+    "expiration": "Expiration Tracker",
+    "recipes": "Recipes",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "auth": {
+    "loginTitle": "Login",
+    "smsLoginTitle": "SMS Login",
+    "phone": "Phone",
+    "code": "Code",
+    "password": "Password",
+    "sendCode": "Send code",
+    "verifyCode": "Verify code",
+    "passwordLogin": "Login with password",
+    "setPassword": "Save password",
+    "newUser": "New user",
+    "loggedIn": "Logged in",
+    "role": "Your role",
+    "remember": "Language preference is saved."
+  },
+  "layout": {
+    "welcome": "Welcome",
+    "mobileMenu": "Menu",
+    "language": "Language",
+    "notAuthorized": "Not authorized."
+  },
+  "dashboard": {
+    "heading": "Today at a glance",
+    "nextShift": "Next shift",
+    "prepReady": "Prep today",
+    "tasks": "Periodic tasks",
+    "logs": "Daily logs",
+    "checklist": "Today's checklist",
+    "view": "View"
+  },
+  "schedule": {
+    "title": "Shift Schedule",
+    "create": "Create shift",
+    "date": "Date",
+    "shift": "Shift",
+    "start": "Start",
+    "end": "End",
+    "assign": "Assign user",
+    "morning": "Morning",
+    "evening": "Evening",
+    "save": "Save shift",
+    "list": "Upcoming shifts"
+  },
+  "checklists": {
+    "open": "Opening checklist",
+    "handover": "Handover checklist",
+    "close": "Closing checklist",
+    "instruction": "Check items off and save progress.",
+    "save": "Save progress",
+    "saved": "Saved",
+    "empty": "Checklist is empty."
+  },
+  "prep": {
+    "title": "Prep list",
+    "template": "Generate from template",
+    "add": "Add item",
+    "item": "Item",
+    "quantity": "Quantity",
+    "unit": "Unit",
+    "empty": "No prep items."
+  },
+  "shopping": {
+    "title": "Nightly shopping",
+    "template": "Generate from template",
+    "add": "Add item",
+    "item": "Item",
+    "quantity": "Qty",
+    "unit": "Unit",
+    "acquired": "Acquired",
+    "empty": "No shopping items."
+  },
+  "logs": {
+    "purchaseTitle": "Purchase log",
+    "wasteTitle": "Waste log",
+    "reason": "Reason",
+    "price": "Price",
+    "submit": "Submit",
+    "empty": "Nothing logged yet."
+  },
+  "tasks": {
+    "title": "Periodic tasks",
+    "overdue": "Overdue",
+    "markDone": "Mark done"
+  },
+  "expiration": {
+    "title": "Expiration tracker",
+    "subtitle": "Shelf life guide"
+  },
+  "recipes": {
+    "title": "Recipes",
+    "ingredients": "Ingredients",
+    "category": "Category"
+  },
+  "buttons": {
+    "refresh": "Refresh",
+    "save": "Save",
+    "add": "Add",
+    "generate": "Generate"
+  },
+  "status": {
+    "loading": "Loading...",
+    "error": "Failed to load data",
+    "success": "Done"
+  }
+}

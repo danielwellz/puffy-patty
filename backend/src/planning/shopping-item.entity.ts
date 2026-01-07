@@ -12,6 +12,9 @@ export class ShoppingItem {
   itemName!: string;
 
   @Column({ nullable: true })
+  category?: string;
+
+  @Column({ nullable: true })
   quantity?: string;
 
   @Column({ nullable: true })

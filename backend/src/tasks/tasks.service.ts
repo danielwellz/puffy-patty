@@ -4,10 +4,17 @@ import { Repository } from "typeorm";
 import { PeriodicTask } from "./periodic-task.entity";
 
 const seedTasks = [
-  { taskName: "Deep clean kitchen", frequencyDays: 7 },
-  { taskName: "Clean centrifuge filter", frequencyDays: 7 },
-  { taskName: "Replace fryer oil", frequencyDays: 5 },
-  { taskName: "Hood/vent inspection", frequencyDays: 14 }
+  { taskName: "دیپ کلین آشپزخانه", frequencyDays: 7 },
+  { taskName: "نظافت سانتریفیوژ (فیلتر/بدنه)", frequencyDays: 7 },
+  { taskName: "تعویض روغن سرخ‌کن", frequencyDays: 5 },
+  { taskName: "مرتب‌سازی انبار", frequencyDays: 7 },
+  { taskName: "نظافت کامل فر پیتزا", frequencyDays: 7 },
+  { taskName: "تمیز کردن دیوارها", frequencyDays: 4 },
+  { taskName: "شستن سطل‌های زباله", frequencyDays: 3 },
+  { taskName: "نظافت پشت یخچال‌های قدی", frequencyDays: 5 },
+  { taskName: "نظافت پشت هات‌لاین‌ها", frequencyDays: 3 },
+  { taskName: "نظافت کامل ظرفشویی", frequencyDays: 6 },
+  { taskName: "ضدعفونی عمیق تخته‌ها", frequencyDays: 30 }
 ];
 
 @Injectable()
@@ -18,11 +25,8 @@ export class TasksService {
   ) {}
 
   private async ensureSeeds(branchId?: string | null) {
-    const count = await this.repo.count({ where: branchId ? { branchId } : {} });
-    if (count === 0) {
-      const tasks = seedTasks.map((t) => this.repo.create({ ...t, ...(branchId ? { branchId } : {}) }));
-      await this.repo.save(tasks);
-    }
+    const tasks = seedTasks.map((t) => this.repo.create({ ...t, branchId: branchId ?? undefined }));
+    await this.repo.upsert(tasks, ["taskName", "branchId"]);
   }
 
   async findAll(branchId?: string | null) {

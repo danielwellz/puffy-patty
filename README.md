@@ -1,50 +1,43 @@
-# Puffy Patty static menu site
+# Puffy Patty Operations App
 
-Modern, bilingual (EN/FA) menu-first landing page inspired by Impossible Foods and Oatly. Pure HTML/CSS/JS; no build step or backend required.
+React (RTL/Persian) frontend + NestJS/Postgres backend for Puffy Patty’s kitchen workflow: shifts, checklists, prep/shopping lists, recipes, expiration rules, and daily logs. Legacy static assets have been removed; the repo now centers on the app code.
 
-## Run locally
+## Structure
+- `backend/` — NestJS API, Postgres via TypeORM, seed script with Persian data.
+- `frontend/` — CRA-based React app with react-router and react-i18next (default language: `fa`, RTL).
+
+## Quick start
+1) Backend  
 ```bash
-# from repo root
-python -m http.server 8080
-# open http://localhost:8080
+cd backend
+cp .env.example .env            # set DB + JWT values
+npm install
+npm run seed                    # inserts recipes, checklists, prep/shopping templates, expiration rules, shifts, users
+npm run start:dev               # http://localhost:3000/api
 ```
 
-## Deploy (static)
-- Serve `index.html`, `css/`, `js/`, `assets/`, and `favicon.svg` from Nginx/Apache or any static host.
-- Example Nginx snippet:
-```nginx
-server {
-  listen 80;
-  server_name puffypatty.example.com;
-  root /var/www/puffy-patty;
-  index index.html;
-  location / {
-    try_files $uri $uri/ =404;
-  }
-}
+Sample users (password `password123`):
+- Manager: `09120001000`
+- Head chef: `09120000001`
+- Staff: `09120000002`, `09120000003`, `09120000004`, `09120000005`
+
+2) Frontend  
+```bash
+cd frontend
+npm install
+# set REACT_APP_API_URL if the API isn’t on http://localhost:3000/api
+npm start                       # http://localhost:3000
 ```
 
-## Editing content
-- Menu items, prices, tags, ingredients, recipes, and media placeholders: `js/menu-data.js` (single source of truth).
-- UI text and translations: `js/app.js` (`translations` object).
-- Images/icons: swap placeholders in `assets/placeholders/` or add real photos in `assets/`.
+## What’s included
+- Auth (SMS + password), role-based routing/menus, RTL layout.
+- Pages: Dashboard, Shift schedule, Open/Handover/Close checklists, Prep list, Shopping list, Purchase/Waste logs, Periodic tasks, Expiration tracker, Recipes.
+- Seed data: Persian recipes/ingredients, daily checklists, prep + shopping templates, periodic tasks, expiration rules, and a week of demo shifts.
 
-## Features
-- Sticky header with language toggle (EN/FA) persisted in `localStorage`.
-- Menu grid with category and tag pills, debounced search, media-rich modal viewer, and Kitchen Mode for recipe grams.
-- RTL support, Persian digit formatting, accessible modals, focus states, reduced-motion respect.
+## Testing & verification
+See `TESTING.md` for the manual QA checklist (roles, checklists, lists/logs, RTL/i18n, PWA build).
 
-## TODO for production
-- Replace image/video placeholders with optimized assets in `assets/menu/`.
-- Wire contact/map links to final destinations if needed.
-- Minify CSS/JS during deployment if desired.
-
-## Manual test checklist
-- Switch EN/FA: verify RTL flip, Persian digits, and intact layout.
-- Mobile nav opens/closes; background scroll is locked when open.
-- Menu pills + tag filters + search filter correctly.
-- Keyboard: Tab to a card, press Enter/Space opens modal; focus stays trapped; ESC closes and focus returns.
-- Modal next/prev navigate items; media placeholder shows if no video; Kitchen Mode toggles recipe tab visibility/grams.
-- Hosting from a subfolder (`./index.html`) still loads assets (no leading slashes).
-- Reduced motion: parallax/marquee/video autoplay toned down; no jarring animations.
-- No console errors on load or when interacting with filters/modals.
+## Production notes
+- Build frontend: `npm run build` then serve the `build/` folder (or proxy via Nest).
+- Build backend: `npm run build && npm run start:prod`.
+- Keep DB encoding UTF-8 to preserve Persian content.

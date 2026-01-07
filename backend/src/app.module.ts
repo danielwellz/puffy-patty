@@ -8,15 +8,6 @@ import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { UsersModule } from "./users/users.module";
 import { AuthModule } from "./auth/auth.module";
-import { User } from "./users/user.entity";
-import { VerificationCode } from "./auth/verification.entity";
-import { Shift } from "./shifts/shift.entity";
-import { Attendance } from "./attendance/attendance.entity";
-import { ShoppingItem } from "./planning/shopping-item.entity";
-import { PrepItem } from "./planning/prep-item.entity";
-import { DailyPurchase } from "./daily/purchase.entity";
-import { WasteLog } from "./daily/waste.entity";
-import { Branch } from "./branches/branch.entity";
 import { BranchModule } from "./branches/branch.module";
 import { RolesGuard } from "./auth/roles.guard";
 import { TasksModule } from "./tasks/tasks.module";
@@ -26,6 +17,10 @@ import { ShiftsModule } from "./shifts/shifts.module";
 import { AttendanceModule } from "./attendance/attendance.module";
 import { PlanningModule } from "./planning/planning.module";
 import { DailyModule } from "./daily/daily.module";
+import { RecipesModule } from "./recipes/recipes.module";
+import { ChecklistsModule } from "./checklists/checklists.module";
+import { ExpirationModule } from "./expiration/expiration.module";
+import { entities } from "./database/entities";
 
 @Module({
   imports: [
@@ -62,7 +57,7 @@ import { DailyModule } from "./daily/daily.module";
           logging: db.logging,
           retryAttempts: 5,
           retryDelay: 2000,
-          entities: [User, VerificationCode, Shift, Attendance, ShoppingItem, PrepItem, DailyPurchase, WasteLog, Branch],
+          entities,
           autoLoadEntities: true
         };
       }
@@ -76,7 +71,10 @@ import { DailyModule } from "./daily/daily.module";
     AttendanceModule,
     PlanningModule,
     DailyModule,
-    BranchModule
+    BranchModule,
+    RecipesModule,
+    ChecklistsModule,
+    ExpirationModule
   ],
   controllers: [AppController],
   providers: [

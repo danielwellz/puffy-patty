@@ -21,6 +21,9 @@ export class PlanningController {
   @Post("shopping-list")
   addShopping(@Body() body: any, @CurrentUser() user: any) {
     const items = body.items || body;
+    if (body.template === true) {
+      return this.planningService.generateShoppingTemplate(body.date, user?.branchId);
+    }
     return this.planningService.addShopping(items, user?.branchId);
   }
 
@@ -36,6 +39,12 @@ export class PlanningController {
   @Delete("shopping-list/:id")
   removeShopping(@Param("id") id: string) {
     return this.planningService.removeShopping(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get("shopping-template")
+  shoppingTemplate() {
+    return this.planningService.getShoppingTemplate();
   }
 
   @UseGuards(JwtAuthGuard)
@@ -67,5 +76,11 @@ export class PlanningController {
   @Delete("prep-list/:id")
   removePrep(@Param("id") id: string) {
     return this.planningService.removePrep(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get("prep-template")
+  prepTemplate() {
+    return this.planningService.getPrepTemplate();
   }
 }

@@ -9,12 +9,15 @@ const detectionOptions = {
   caches: ["localStorage"]
 };
 
+const stored = typeof window !== "undefined" ? localStorage.getItem("puffy-lang") ?? undefined : undefined;
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: i18nResources,
-    fallbackLng: "en",
+    fallbackLng: "fa",
+    lng: stored || "fa",
     supportedLngs: Object.keys(i18nResources),
     detection: detectionOptions,
     interpolation: {

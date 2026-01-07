@@ -1,0 +1,126 @@
+{
+  "app": {
+    "title": "پافی پتی",
+    "date": "تاریخ"
+  },
+  "nav": {
+    "dashboard": "داشبورد",
+    "schedule": "برنامه شیفت",
+    "checklistOpen": "چک‌لیست باز کردن",
+    "checklistHandover": "تحویل شیفت",
+    "checklistClose": "بستن شبانه",
+    "prep": "لیست آماده‌سازی",
+    "shopping": "لیست خرید شبانه",
+    "waste": "هدررفت",
+    "purchases": "خرید روزانه",
+    "tasks": "کارهای دوره‌ای",
+    "expiration": "تاریخ انقضا",
+    "recipes": "دستور پخت",
+    "login": "ورود",
+    "logout": "خروج"
+  },
+  "auth": {
+    "loginTitle": "ورود",
+    "smsLoginTitle": "ورود با پیامک",
+    "phone": "شماره همراه",
+    "code": "کد",
+    "password": "رمز عبور",
+    "sendCode": "ارسال کد",
+    "verifyCode": "تأیید کد",
+    "passwordLogin": "ورود با رمز",
+    "setPassword": "ثبت رمز",
+    "newUser": "کاربر جدید",
+    "loggedIn": "ورود انجام شد",
+    "role": "نقش شما",
+    "remember": "ترجیح زبان ذخیره می‌شود."
+  },
+  "layout": {
+    "welcome": "خوش آمدید",
+    "mobileMenu": "منو",
+    "language": "زبان",
+    "notAuthorized": "دسترسی ندارید."
+  },
+  "dashboard": {
+    "heading": "تصویر کلی امروز",
+    "nextShift": "شیفت بعدی",
+    "prepReady": "آماده‌سازی امروز",
+    "tasks": "کارهای دوره‌ای",
+    "logs": "لاگ روزانه",
+    "checklist": "چک‌لیست امروز",
+    "view": "مشاهده"
+  },
+  "schedule": {
+    "title": "برنامه شیفت",
+    "create": "افزودن شیفت",
+    "date": "تاریخ",
+    "shift": "شیفت",
+    "start": "شروع",
+    "end": "پایان",
+    "assign": "انتخاب کاربر",
+    "morning": "صبح",
+    "evening": "شب",
+    "save": "ثبت شیفت",
+    "list": "شیفت‌های ثبت شده"
+  },
+  "checklists": {
+    "open": "چک‌لیست باز کردن",
+    "handover": "چک‌لیست تحویل شیفت",
+    "close": "چک‌لیست بستن شبانه",
+    "instruction": "آیتم‌ها را تیک بزنید و پیشرفت را ذخیره کنید.",
+    "save": "ذخیره پیشرفت",
+    "saved": "ذخیره شد",
+    "empty": "چک‌لیست خالی است."
+  },
+  "prep": {
+    "title": "لیست آماده‌سازی",
+    "template": "تولید از تمپلیت روزانه",
+    "add": "افزودن آیتم",
+    "item": "آیتم",
+    "quantity": "مقدار",
+    "unit": "واحد",
+    "empty": "لیست خالی است."
+  },
+  "shopping": {
+    "title": "لیست خرید شبانه",
+    "template": "تولید از تمپلیت",
+    "add": "افزودن خرید",
+    "item": "آیتم",
+    "quantity": "مقدار",
+    "unit": "واحد",
+    "acquired": "تهیه شد",
+    "empty": "لیست خالی است."
+  },
+  "logs": {
+    "purchaseTitle": "ثبت خرید روزانه",
+    "wasteTitle": "ثبت هدررفت",
+    "reason": "دلیل",
+    "price": "قیمت",
+    "submit": "ثبت",
+    "empty": "موردی ثبت نشده است."
+  },
+  "tasks": {
+    "title": "کارهای دوره‌ای",
+    "overdue": "عقب‌افتاده",
+    "markDone": "علامت انجام"
+  },
+  "expiration": {
+    "title": "ردیاب تاریخ انقضا",
+    "subtitle": "عمر نگهداری مواد و پیش‌نیازها"
+  },
+  "recipes": {
+    "title": "دستور پخت",
+    "ingredients": "مواد اولیه",
+    "category": "دسته"
+  },
+  "buttons": {
+    "refresh": "به‌روزرسانی",
+    "save": "ذخیره",
+    "add": "افزودن",
+    "generate": "تولید"
+  },
+  "status": {
+    "loading": "در حال بارگذاری...",
+    "error": "خطا در دریافت داده",
+    "success": "انجام شد"
+  }
+}

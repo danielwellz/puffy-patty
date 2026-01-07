@@ -3,8 +3,8 @@ import { render, screen } from "@testing-library/react";
 import App from "./App";
 import "./i18n";
 
-test("renders hero tagline and language toggle", () => {
+test("renders login screen with language toggle", () => {
   render(<App />);
-  expect(screen.getByRole("heading", { level: 1, name: /Detroit pizzas/i })).toBeInTheDocument();
+  expect(screen.getByText(/ورود/i)).toBeInTheDocument();
   expect(screen.getByRole("button", { name: "فا" })).toBeInTheDocument();
 });
